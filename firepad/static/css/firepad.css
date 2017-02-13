@@ -1,0 +1,10 @@
+/* CSS for FirepadXBlock */
+
+#firepad .firepad {
+  height: 450px;
+  background-color: #f62;
+}
+
+.CodeMirror {
+  background-color: #f62;
+}

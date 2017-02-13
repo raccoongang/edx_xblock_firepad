@@ -1,0 +1,1 @@
+from .firepad import FirepadXBlock
