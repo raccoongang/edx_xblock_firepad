@@ -1,6 +1,6 @@
 /* CSS for FirepadXBlock */
 
-#firepad .firepad {
+.firepad-block .firepad {
   height: 450px;
   background-color: #f62;
 }

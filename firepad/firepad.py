@@ -4,7 +4,6 @@ from xblock.core import XBlock
 from xblock.fields import Scope, String
 from xblock.fragment import Fragment
 from xblockutils.studio_editable import StudioEditableXBlockMixin
-from xblockutils.studio_editable import StudioContainerXBlockMixin
 
 # Make '_' a no-op so we can scrape strings
 _ = lambda text: text
@@ -54,7 +53,8 @@ class FirepadXBlock(StudioEditableXBlockMixin, XBlock):
         frag.add_javascript_url('https://cdn.firebase.com/libs/firepad/1.4.0/firepad.min.js')
         api_settings = {'api_key': self.api_key,
                         'auth_domain': self.auth_domain,
-                        'database_URL': self.database_URL}
+                        'database_URL': self.database_URL,
+                        'name_app_firebase': 'firebase_{}'.format(self.location.block_id)}
         frag.initialize_js('FirepadXBlock', json_args=api_settings)
         return frag
 

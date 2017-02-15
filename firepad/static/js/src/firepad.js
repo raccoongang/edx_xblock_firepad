@@ -8,13 +8,14 @@ function FirepadXBlock(runtime, element, api_settings) {
               authDomain: api_settings.auth_domain,
               databaseURL: api_settings.database_URL
             };
-            firebase.initializeApp(config);
+            var appFirebase = firebase.initializeApp(config, api_settings.name_app_firebase);
 
             // Get Firebase Database reference.
-            var firepadRef = firebase.database().ref();
+            var firepadRef = appFirebase.database().ref();
 
             // Create CodeMirror (with lineWrapping on).
-            var codeMirror = CodeMirror(document.getElementById('firepad'), { lineWrapping: true });
+            var firepadElement = $('.firepad-block', element)[0];
+            var codeMirror = CodeMirror(firepadElement, { lineWrapping: true });
 
             // Create Firepad (with rich text toolbar and shortcuts enabled).
             var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror, {
