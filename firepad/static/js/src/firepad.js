@@ -8,7 +8,16 @@ function FirepadXBlock(runtime, element, api_settings) {
               authDomain: api_settings.auth_domain,
               databaseURL: api_settings.database_URL
             };
-            var appFirebase = firebase.initializeApp(config, api_settings.name_app_firebase);
+
+            var appFirebase ;
+            firebase.apps.forEach(function(item, i, arr) {
+                if (item.name == api_settings.name_app_firebase) {
+                    appFirebase = item;
+                }
+            });
+            if (!appFirebase) {
+                appFirebase = firebase.initializeApp(config, api_settings.name_app_firebase);
+            }
 
             // Get Firebase Database reference.
             var firepadRef = appFirebase.database().ref();
